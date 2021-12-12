@@ -22,15 +22,28 @@
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+            @if (Route::has('user.login'))
+                <div class="hidden fixed top-0 left-0 px-6 py-4 sm:block">
+                    @auth('user')
+                        <a href="{{ url('/user/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                        <a href="{{ route('user.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in as user</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                        @if (Route::has('user.register'))
+                            <a href="{{ route('user.register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register as user</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+            @if (Route::has('admin.login'))
+                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    @auth('admin')
+                        <a href="{{ url('/admin/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                    @else
+                        <a href="{{ route('admin.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in as admin</a>
+
+                        @if (Route::has('admin.register'))
+                            <a href="{{ route('admin.register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register as admin</a>
                         @endif
                     @endauth
                 </div>
